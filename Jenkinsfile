@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Print') {
             steps {
-                echo "Hello Devops Engineers"
+                echo "Hello Noodles!"
             }
         }
         stage('owaspcheck') {
