@@ -14,11 +14,11 @@ pipeline {
         }
         stage('Parse and Extract Data') {
             steps {
-                def xml = readXML file: 'feed.xml'
-                def items = []
-                xml.each { item ->
-                    items << [title: item.title.text(), link: item.link.text()]
-                }
+                def xml = readFile "${env.WORKSPACE}/config.xml"
+                def xmlContents = new XmlParser().parseText(xml)
+                def text = xmlContents.text()
+                echo 'contents are...'
+                echo text
             }
         }
         stage('Send Email') {
