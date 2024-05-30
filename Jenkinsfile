@@ -7,13 +7,13 @@ pipeline {
                 echo "Hello Devops Engineers"
             }
         }
-        stage('OWASP Dependency-Check Vulnerabilities') {
+        stage('owaspcheck') {
           steps {
             dependencyCheck additionalArguments: ''' 
                         -o './'
                         -s './'
                         -f 'ALL' 
-                        --prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
+                        --prettyPrint''', odcInstallation: 'owaspcheck'
             
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
           }
