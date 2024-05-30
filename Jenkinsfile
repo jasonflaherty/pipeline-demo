@@ -1,6 +1,5 @@
 pipeline {
-    agent any
-
+    agent { docker { image 'python:3.12.1-alpine3.19' } }
     stages {
         stage ('Print') {
             steps {
@@ -10,6 +9,11 @@ pipeline {
         stage('Download Feed') {
             steps {
                 sh 'wget http://localhost:8080/rssAll -O feed.xml'
+            }
+        }
+        stage('test python'){
+            steps{
+                sh 'python --version'
             }
         }
         stage('Parse and Extract Data') {
