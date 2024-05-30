@@ -1,6 +1,10 @@
 pipeline {
     agent { docker { image 'python:3.12.1-alpine3.19' } }
     stages {
+        stage('Initialize'){
+            def dockerHome = tool 'myDocker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
         stage ('Print') {
             steps {
                 echo "Hello Noodles!"
