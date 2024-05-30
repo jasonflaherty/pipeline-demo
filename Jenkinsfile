@@ -7,7 +7,6 @@ pipeline {
                 echo "Hello Noodles!"
             }
         }
-        stages {
         stage('Download Feed') {
             steps {
                 sh 'wget http://localhost:8080/rssAll -O feed.xml'
