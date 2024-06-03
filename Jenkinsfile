@@ -8,7 +8,13 @@ pipeline {
         }
         stage('Download Feed') {
             steps {
-                sh 'wget http://localhost:8080/rssAll -O feed.xml'
+                if('wget --version' != null)
+                    sh 'wget --version'
+                    sh 'wget http://localhost:8080/rssAll -O feed.xml'    
+                } else {
+                    echo 'No WGET here...'
+                }
+                
             }
         }
         stage('test python'){
