@@ -8,10 +8,7 @@ pipeline {
         }
         stage('Check WGET'){
             steps{
-                sh '''
-                    wget --post-data="" http://localhost:8080/rssAll
-                    cat feed.xml
-                '''
+                sh 'wget --version'
             }
         }
         stage('test JAVA') {
