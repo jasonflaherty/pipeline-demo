@@ -6,15 +6,23 @@ pipeline {
                 echo "Hello Noodles!"
             }
         }
+        stage('Check WGET'){
+            steps{
+                sh '''
+                    wget --post-data="" http://localhost:8080/rssAll
+                    cat feed.xml
+                '''
+            }
+        }
         stage('Download Feed') {
             steps {
                 script{
-                    if('wget --version' != null) {
-                        sh 'wget --version'
-                        sh 'wget http://localhost:8080/rssAll -O feed.xml'    
-                    } else {
-                        echo 'No WGET here...'
-                    }
+                    // if('wget --version' != null) {
+                    //     sh 'wget --version'
+                    //     sh 'wget http://localhost:8080/rssAll -O feed.xml'    
+                    // } else {
+                    //     echo 'No WGET here...'
+                    // }
                 }
             }
         }
